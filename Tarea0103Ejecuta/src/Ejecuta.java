@@ -2,6 +2,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/*Escribe una clase llamada Ejecuta que reciba como argumentos el comando y las opciones del comando que se quiere ejecutar.
+* El programa debe crear un proceso hijo que ejecute el comando con las opciones  correspondientes
+* mostrando un mensaje de error en el caso de no  ejecutarse correctamente.
+* El padre debe esperar a que el hijo termine de informar si se produjo alguna anomalía en la ejecución del hijo.
+ */
 public class Ejecuta {
     public static void main(String[] args){
         // Validar que al menos se haya pasado un comando
