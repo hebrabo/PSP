@@ -3,7 +3,7 @@ package Ej01Runnable;
 public class EjemploHilosRunnable {
     public static void main(String[] args) {
 
-        // Creamos 8 instancias de la clase MiTarea usando un bucle y un array
+        // Creamos 8 instancias de la clase MiTareaRunnable
         Runnable tarea1 = new MiTareaRunnable();
         Runnable tarea2 = new MiTareaRunnable();
         Runnable tarea3 = new MiTareaRunnable();
