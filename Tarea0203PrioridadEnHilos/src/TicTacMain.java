@@ -7,7 +7,7 @@ class TicTacPrinter implements Runnable {
         @Override
         public void run() {
             while(true) {
-                System.out.println(word);
+                System.out.print(word);
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -22,8 +22,8 @@ class TicTacPrinter implements Runnable {
 
     public static void main(String[] args) {
         // Hilo TIC con prioridad mínima
-        Thread ticThread = new Thread(new TicTacPrinter("TIC"));
-        Thread tacThread = new Thread(new TicTacPrinter("TAC"));
+        Thread ticThread = new Thread(new TicTacPrinter("TIC "));
+        Thread tacThread = new Thread(new TicTacPrinter("TAC "));
 
         ticThread.setPriority(Thread.MAX_PRIORITY);
         tacThread.setPriority(Thread.MIN_PRIORITY);
