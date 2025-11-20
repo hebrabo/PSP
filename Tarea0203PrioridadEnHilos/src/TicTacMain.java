@@ -1,15 +1,34 @@
-public class MainTicTac {
+class TicTacPrinter implements Runnable {
+        private final String word;
+
+        public TicTacPrinter(String word) {
+            this.word = word;
+        }
+        @Override
+        public void run() {
+            while(true) {
+                System.out.println(word);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public class TicTacMain {
+
     public static void main(String[] args) {
         // Hilo TIC con prioridad mínima
-        Thread hiloTIC = new Thread(new TicTacRunnable(" TIC "));
-        hiloTIC.setPriority(Thread.MIN_PRIORITY);
+        Thread ticThread = new Thread(new TicTacPrinter("TIC"));
+        Thread tacThread = new Thread(new TicTacPrinter("TAC"));
 
-        // Hilo TAC con prioridad mínima
-        Thread hiloTAC = new Thread(new TicTacRunnable(" TAC "));
-        hiloTAC.setPriority(Thread.MAX_PRIORITY);
+        ticThread.setPriority(Thread.MAX_PRIORITY);
+        tacThread.setPriority(Thread.MIN_PRIORITY);
 
-        // Iniciamos ambos hilos
-        hiloTIC.start();
-        hiloTAC.start();
+        ticThread.start();
+        tacThread.start();
     }
 }
