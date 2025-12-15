@@ -28,3 +28,12 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# --- SEGURIDAD AWS (Importante) ---
+*.pem
+*.key
+clave-segura.pem
+
+# --- Compilados de Java ---
+out/
+*.class

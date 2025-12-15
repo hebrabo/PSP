@@ -6,8 +6,10 @@ import java.util.Scanner;
 
 public class ClienteJuego {
     public static void main(String[] args) {
-        // En local usamos "localhost". En AWS usaremos la IP pública de la instancia.
-        String host = "localhost";
+        // En local usamos "localhost".
+        // String host = "localhost";
+        // En AWS usamos la IP pública de la instancia.
+        String host = "35.172.164.6";
         int puerto = 5000;
 
         // Try-with-resources: Cierra el socket automáticamente al terminar el bloque.

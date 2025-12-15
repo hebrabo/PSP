@@ -14,8 +14,10 @@ public class ClienteUDP {
             DatagramSocket socket = new DatagramSocket();
 
             // 2. Configuración del Destino
-            // Importante: ahora funciona con 'localhost', pero luego pondremos la IP Pública de la EC2
-            InetAddress direccionServidor = InetAddress.getByName("localhost");
+            // Funcionamiento con 'localhost'
+               // InetAddress direccionServidor = InetAddress.getByName("localhost");
+            // Funcionamiento con la instancia de AWS
+            InetAddress direccionServidor = InetAddress.getByName("35.172.164.6");
             int puertoServidor = 5001; // Debe coincidir con el puerto que abrió el servidor
 
             Scanner scanner = new Scanner(System.in);
