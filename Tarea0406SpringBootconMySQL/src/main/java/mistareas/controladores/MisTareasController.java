@@ -5,10 +5,7 @@ import mistareas.servicios.MisTareasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,5 +35,31 @@ public class MisTareasController {
             // Enviar una respuesta HTTP 404 si la tarea no se encuentra
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+/*
+ * @PostMapping: Indica que este método solo responderá cuando alguien
+ *               envíe datos (un "POST") a la ruta /tasks.
+ * @RequestBody: Le dice a Spring Boot: "Coge el JSON que viene en el cuerpo
+ * del mensaje y conviértelo automáticamente en un objeto Java de tipo Task".
+ */
+    @PostMapping
+    // Método para RECIBIR una nueva tarea
+    public int crearTarea(@RequestBody Task nuevaTarea) {
+        // Llamamos al servicio para que inicie el proceso de guardado
+        return misTareasService.save(nuevaTarea);
+    }
+
+    // PUT (actualizar)
+    @PutMapping("/{id}")
+    public int actualizarTarea(@PathVariable Long id, @RequestBody Task tarea) {
+        // Forzamos que la tarea use el ID que viene en la URL
+        tarea.setId(id);
+        return misTareasService.update(tarea);
+    }
+
+    // DELETE (borrar)
+    @DeleteMapping("/{id}")
+    public int eliminarTarea(@PathVariable Long id) {
+        return misTareasService.deleteById(id);
     }
 }

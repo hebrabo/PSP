@@ -25,4 +25,23 @@ public class MisTareasServiceImpl implements  MisTareasService{
     public Task getMiTarea(Long id) {
         return misTareasRepository.getMiTarea(id);
     }
+
+    // Llamada Guardar
+    @Override
+    public int save(Task task) {
+        // El servicio le pide al repositorio que guarde la tarea
+        return misTareasRepository.save(task);
+    }
+
+    // Llamada Editar
+    @Override
+    public int update(Task task) {
+        return misTareasRepository.update(task);
+    }
+
+    // Llamada Borrar
+    @Override
+    public int deleteById(Long id) {
+        return misTareasRepository.deleteById(id);
+    }
 }

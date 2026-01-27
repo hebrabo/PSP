@@ -41,4 +41,30 @@ public class MisTareasRepositoryImpl implements MisTareasRepository{
 
         return tareas.isEmpty() ? null : tareas.get(0);
     }
+
+    // Guardar
+    @Override
+    public int save(Task task) {
+        // Usamos INSERT INTO para meter los datos en la tabla 'task'
+        String sql = "INSERT INTO task (description, status) VALUES (?, ?)";
+
+        // jdbcTemplate.update ejecuta la sentencia y devuelve 1 si se insertó bien
+        return jdbcTemplate.update(sql, task.getDescription(), task.getStatus());
+    }
+
+    // Editar
+    @Override
+    public int update(Task task) {
+        // Usamos UPDATE para modificar una fila existente filtrando por su ID
+        String sql = "UPDATE task SET description = ?, status = ? WHERE id = ?";
+        return jdbcTemplate.update(sql, task.getDescription(), task.getStatus(), task.getId());
+    }
+
+    // Borrar
+    @Override
+    public int deleteById(Long id) {
+        // Usamos DELETE para eliminar la fila que coincida con el ID
+        String sql = "DELETE FROM task WHERE id = ?";
+        return jdbcTemplate.update(sql, id);
+    }
 }

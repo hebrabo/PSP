@@ -5,6 +5,10 @@ public class Task {
     private String description;
     private String status;
 
+    // Añadir un constructor vacío
+    public Task() {
+    }
+
     public Task(Long id, String description, String status) {
         this.id  = id;
         this.description = description;
