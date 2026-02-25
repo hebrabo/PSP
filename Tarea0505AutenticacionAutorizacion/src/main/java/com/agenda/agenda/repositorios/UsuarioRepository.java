@@ -13,11 +13,15 @@ public class UsuarioRepository {
 
     public List<Usuario> getUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
+
         // Usuario ADMINISTRADOR (aitor / 1234)
         usuarios.add(new Usuario("aitor", PasswordEncryptor.encrypt("1234"), Rol.ADMIN));
 
         // Usuario NORMAL (alicia / 1111)
         usuarios.add(new Usuario("alicia", PasswordEncryptor.encrypt("1111"), Rol.USER));
+
+        // Usuario INVITADO (invitado / 0000) - Solo autorización para GET
+        usuarios.add(new Usuario("invitado", PasswordEncryptor.encrypt("0000"), Rol.GUEST));
 
         return usuarios;
     }

@@ -26,9 +26,15 @@ public class WebSecurityConfig {
                         // Permitir entrar al login a todo el mundo
                         .requestMatchers(HttpMethod.POST, Constans.LOGIN_URL).permitAll()
 
-                        // REGLA NUEVA: Solo el ADMIN puede borrar contactos
-                        // Usamos "ROLE_" + el nombre del rol
+                        // REGLA PARA DELETE: Solo el ADMIN puede borrar contactos
                         .requestMatchers(HttpMethod.DELETE, "/contactos/**").hasAuthority("ROLE_" + Rol.ADMIN)
+
+                        // NUEVAS REGLAS: POST y PUT solo para ADMIN y USER (GUEST se queda fuera)
+                        .requestMatchers(HttpMethod.POST, "/contactos/**").hasAnyAuthority("ROLE_" + Rol.ADMIN, "ROLE_" + Rol.USER)
+                        .requestMatchers(HttpMethod.PUT, "/contactos/**").hasAnyAuthority("ROLE_" + Rol.ADMIN, "ROLE_" + Rol.USER)
+
+                        // REGLA PARA GET: Permitido para cualquier usuario autenticado (ADMIN, USER y GUEST)
+                        .requestMatchers(HttpMethod.GET, "/contactos/**").authenticated()
 
                         // El resto de peticiones requieren estar autenticado (tener token)
                         .anyRequest().authenticated())
